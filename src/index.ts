@@ -4,7 +4,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 
 const server = new McpServer({ name: "mcp-noaa", version: "1.0.0" });
-const UA = "SkywalkerAgent chris.sellers01@gmail.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "amw-dogfood@agentmail.to";
+const UA = `SkywalkerAgent ${CONTACT_EMAIL}`;
 
 async function noaaApi(url: string) {
   const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "application/geo+json" } });
